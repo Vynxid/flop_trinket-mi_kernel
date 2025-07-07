@@ -14,10 +14,12 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-- name: Clone AOSP Clang from googlesource (⚠️ Slow & Heavy)
-  run: |
-    git clone --depth=1 https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 clang
-    echo "CLANG_PATH=$(pwd)/clang/clang-r522817" >> $GITHUB_ENV
+    - name: Download & Extract Google AOSP Clang Toolchain
+      run: |
+        mkdir clang
+        curl -L "https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86/+archive/refs/heads/main/clang-r547379.tar.gz" -o clang.tar.gz
+        tar -xzf clang.tar.gz -C clang
+        echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
 
     - name: Set executable permission for build script
       run: chmod +x do_build.sh
