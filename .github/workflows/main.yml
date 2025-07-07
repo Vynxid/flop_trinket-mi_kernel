@@ -18,7 +18,7 @@ jobs:
       run: chmod +x do-build.sh
 
     - name: Run Kernel Build Script
-      run: ./do-build.sh
+      run: ./do_build.sh
 
     - name: Upload output files (zImage, Image.gz-dtb, etc)
       if: success()
