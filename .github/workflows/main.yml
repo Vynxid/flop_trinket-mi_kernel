@@ -1,0 +1,30 @@
+name: Kernel Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ floppy-new ]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v4
+
+    - name: Set executable permission for build script
+      run: chmod +x do-build.sh
+
+    - name: Run Kernel Build Script
+      run: ./do-build.sh
+
+    - name: Upload output files (zImage, Image.gz-dtb, etc)
+      if: success()
+      uses: actions/upload-artifact@v4
+      with:
+        name: kernel-output
+        path: |
+          out/arch/arm64/boot/*
+          
