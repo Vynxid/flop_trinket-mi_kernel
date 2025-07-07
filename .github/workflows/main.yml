@@ -14,10 +14,20 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
+    - name: Set up AOSP Clang toolchain
+      run: |
+        git clone --depth=1 https://github.com/ItsVixano/aosp-clang.git clang
+        echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
+
     - name: Set executable permission for build script
       run: chmod +x do_build.sh
 
     - name: Run Kernel Build Script
+      env:
+        PATH: ${{ env.CLANG_PATH }}/bin:${{ env.PATH }}
+        CC: clang
+        CLANG_TRIPLE: aarch64-linux-gnu-
+        CROSS_COMPILE: aarch64-linux-gnu-
       run: ./do_build.sh ginkgo
 
     - name: Upload output files (zImage, Image.gz-dtb, etc)
@@ -27,4 +37,3 @@ jobs:
         name: kernel-output
         path: |
           out/arch/arm64/boot/*
-          
