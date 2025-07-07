@@ -14,10 +14,10 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Set up AOSP Clang toolchain
-      run: |
-        git clone --depth=1 https://github.com/ItsVixano/aosp-clang.git clang
-        echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
+- name: Clone AOSP Clang from googlesource (⚠️ Slow & Heavy)
+  run: |
+    git clone --depth=1 https://android.googlesource.com/platform/prebuilts/clang/host/linux-x86 clang
+    echo "CLANG_PATH=$(pwd)/clang/clang-r522817" >> $GITHUB_ENV
 
     - name: Set executable permission for build script
       run: chmod +x do_build.sh
