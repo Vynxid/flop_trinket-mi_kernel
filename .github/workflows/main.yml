@@ -18,7 +18,7 @@ jobs:
       run: chmod +x do_build.sh
 
     - name: Run Kernel Build Script
-      run: ./do_build.sh
+      run: ./do_build.sh ginkgo
 
     - name: Upload output files (zImage, Image.gz-dtb, etc)
       if: success()
