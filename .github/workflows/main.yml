@@ -14,11 +14,6 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Install required dependencies
-      run: |
-        sudo apt update
-        sudo apt install -y realpath bash
-
     - name: Download & Extract Google AOSP Clang Toolchain
       run: |
         mkdir clang
