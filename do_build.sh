@@ -58,7 +58,9 @@ run_build() {
     effective_opts="${effective_opts//f/}"
 
     echo -e "==> Building target: \"$dev\" with options: \"$effective_opts\"\n"
-    "/bin/bash" "$ck_script" "$dev" "$effective_opts"
+    chmod +x "$ck_script"
+    ./"$ck_script" "$dev" "$effective_opts"
+
     
     first_build_done=true # Mark that at least one build has started/completed
 }
