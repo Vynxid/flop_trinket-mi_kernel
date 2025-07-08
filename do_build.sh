@@ -6,7 +6,7 @@ all_devs=("ginkgo") # Define devices for "all" target
 ck_script="ckbuild.sh"              # Name of main script
 
 rm -r include/config &>/dev/null || true
-export WP=${WP:-$(realpath "${PWD}/../")}
+export WP=${WP:-$(readlink -f "${PWD}/../")}
 
 if [[ -z "$1" ]]; then
     echo "ERROR: Please specify device or 'all' to build!"
