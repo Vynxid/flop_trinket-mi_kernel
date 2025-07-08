@@ -17,6 +17,12 @@ jobs:
     - name: Install realpath
       run: sudo apt install -y coreutils
 
+    - name: Install required tools
+      run: |
+        sudo apt update
+        sudo apt install -y realpath bash
+    
+
     - name: Download & Extract Google AOSP Clang Toolchain
       run: |
         mkdir clang
