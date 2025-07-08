@@ -35,7 +35,7 @@ jobs:
         CC: clang
         CLANG_TRIPLE: aarch64-linux-gnu-
         CROSS_COMPILE: aarch64-linux-gnu-
-      run: ./do_build.sh ginkgo k t
+      run: ./do_build.sh ginkgo kt
 
     - name: Upload output files (zImage, Image.gz-dtb, etc)
       if: success()
