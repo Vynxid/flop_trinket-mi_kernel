@@ -14,11 +14,11 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
-    - name: Install common tools
-  run: |
+    - name: Install required dependencies
+      run: |
         sudo apt update
-        sudo apt install -y curl grep coreutils hostname procps
- 
+        sudo apt install -y bash curl grep coreutils hostname procps lz4 brotli flex bc cpio kmod ccache zip libtinfo5 python3
+
     - name: Download & Extract Google AOSP Clang Toolchain
       run: |
         mkdir clang
@@ -26,15 +26,12 @@ jobs:
         tar -xzf clang.tar.gz -C clang
         echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
 
-    - name: Install bash
-      run: sudo apt update && sudo apt install -y bash
-
     - name: Set executable permission for build script
       run: chmod +x do_build.sh ckbuild.sh
 
     - name: Run Kernel Build Script
       env:
-        PATH: ${{ env.CLANG_PATH }}/bin:${{ env.PATH }}
+        PATH: ${{ env.CLANG_PATH }}/bin:/usr/bin:/bin:${{ env.PATH }}
         CC: clang
         CLANG_TRIPLE: aarch64-linux-gnu-
         CROSS_COMPILE: aarch64-linux-gnu-
