@@ -14,6 +14,11 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v4
 
+    - name: Install required dependencies
+      run: |
+        sudo apt update
+        sudo apt install -y realpath bash
+
     - name: Download & Extract Google AOSP Clang Toolchain
       run: |
         mkdir clang
@@ -22,7 +27,7 @@ jobs:
         echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
 
     - name: Set executable permission for build script
-      run: chmod +x do_build.sh
+      run: chmod +x do_build.sh ckbuild.sh
 
     - name: Run Kernel Build Script
       env:
