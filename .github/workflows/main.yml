@@ -21,6 +21,9 @@ jobs:
         tar -xzf clang.tar.gz -C clang
         echo "CLANG_PATH=$(pwd)/clang" >> $GITHUB_ENV
 
+    - name: Install bash
+      run: sudo apt update && sudo apt install -y bash
+
     - name: Set executable permission for build script
       run: chmod +x do_build.sh ckbuild.sh
 
