@@ -18,7 +18,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y bash curl grep coreutils hostname procps lz4 brotli flex bc cpio kmod ccache zip libtinfo6 python3
-
+        sudo apt upgrade
     - name: Download & Extract Google AOSP Clang Toolchain
       run: |
         mkdir clang
