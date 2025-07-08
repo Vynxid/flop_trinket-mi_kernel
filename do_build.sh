@@ -2,7 +2,7 @@
 set -e
 
 # Configuration
-all_devs=("ginkgo") # Define devices for "all" target
+all_devs=("ginkgo" "laurel_sprout")
 ck_script="ckbuild.sh"              # Name of main script
 
 rm -r include/config &>/dev/null || true
