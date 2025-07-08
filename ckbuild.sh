@@ -81,7 +81,7 @@ fi
 # Other
 DEFAULT_DEFCONFIG="vendor/trinket-perf_defconfig"
 BASE_FRAGMENT="vendor/xiaomi-trinket.config"
-KERNEL_URL="https://github.com/Flopster101/flop_ginkgo_kernel"
+KERNEL_URL="https://github.com/Vynxid/flop_trinket-mi_kernel"
 SECONDS=0 # builtin bash timer
 DATE="$(date '+%Y%m%d-%H%M')"
 BUILD_HOST="$USER@$(hostname)"
@@ -203,12 +203,8 @@ fi
 LINKER="ld.lld"
 
 ## Secrets
-if [[ "$TEST_CHANNEL" == "0" ]]; then
-    TELEGRAM_CHAT_ID="$(cat ../chat)"
-elif [[ "$TEST_CHANNEL" == "1" ]]; then
-    TELEGRAM_CHAT_ID="$(cat ../chat_test)"
-fi
-TELEGRAM_BOT_TOKEN="$(cat ../bot_token)"
+TELEGRAM_CHAT_ID="1814545081"
+TELEGRAM_BOT_TOKEN="6149988039:AAGOY2G2QCRgFCUFMWiogRnYvoJLGnBbfIg"
 
 ## Build type
 LINUX_VER=$(make kernelversion 2>/dev/null)
